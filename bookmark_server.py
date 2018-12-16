@@ -2,6 +2,7 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 import requests
+import os
 
 # basic HTML template
 html = '''
@@ -98,5 +99,10 @@ class MyHandler(BaseHTTPRequestHandler):
 
 # commands to run the server on localhost at port 8000
 if __name__ == "__main__":
-    server = HTTPServer(("127.0.0.1", 8000), MyHandler)
+    # use port if it's there
+    port = int(os.environ.get('PORT', 8000))  
+    # added for Heroku
+    server = HTTPServer(("", 8000), MyHandler)
+
+    # server = HTTPServer(("127.0.0.1", 8000), MyHandler)
     server.serve_forever()
