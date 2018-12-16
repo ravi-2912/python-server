@@ -58,8 +58,8 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.send_response(404)
                 self.send_header("content-type", "text/plain; charset=utf-8")
                 self.end_headers()
-                self.wfile.write("Unable to find URI for short name {} " +
-                                 "from memory".format(path).encode())
+                self.wfile.write(("Unable to find URI for short name {} " +
+                                 "from memory").format(path).encode())
         else:
             # ok status
             # its the part of PRG architecture
@@ -88,8 +88,8 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.send_response(404)
                 self.send_header("content-type", "text/plain; charset=utf-8")
                 self.end_headers()
-                self.wfile.write("Unable to get response " +
-                                 "form URI {}.".format(q["uri"][0]).encode())
+                self.wfile.write(("Unable to get response " +
+                                 "form URI {}.".format(q["uri"][0])).encode())
         else:
             # error
             self.send_response(400)
@@ -100,7 +100,7 @@ class MyHandler(BaseHTTPRequestHandler):
 # commands to run the server on localhost at port 8000
 if __name__ == "__main__":
     # use port if it's there
-    port = int(os.environ.get('PORT', 8000))  
+    port = int(os.environ.get('PORT', 8000))
     # added for Heroku
     server = HTTPServer(("", 8000), MyHandler)
 
