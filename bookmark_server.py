@@ -92,7 +92,7 @@ class MyHandler(BaseHTTPRequestHandler):
                                  "form URI {}.".format(q["uri"][0]).encode())
         else:
             # error
-            self.send_response(404)
+            self.send_response(400)
             self.send_header("content-type", "text/plain; charset=utf-8")
             self.end_headers()
             self.wfile.write("Not all form fields provided.".encode())
