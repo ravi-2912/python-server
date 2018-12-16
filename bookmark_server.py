@@ -30,6 +30,7 @@ html = '''
 # storage for uri as key-value pair {"shortname": "long-uri"}
 memory = {}
 
+
 def checkURI(uri, timeout=5):
     """Check if the URI send OK response else raise error"""
     try:
@@ -37,6 +38,7 @@ def checkURI(uri, timeout=5):
         return r.status_code == 200
     except requests.exceptions.RequestException:
         return False
+
 
 class MyHandler(BaseHTTPRequestHandler):
     """Class to handle GET and POST requests"""
@@ -55,7 +57,8 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.send_response(404)
                 self.send_header("content-type", "text/plain; charset=utf-8")
                 self.end_headers()
-                self.wfile.write("Unable to find URI for short name {} from memory".format(path).encode())
+                self.wfile.write("Unable to find URI for short name {} " +
+                                 "from memory".format(path).encode())
         else:
             # ok status
             # its the part of PRG architecture
@@ -63,8 +66,8 @@ class MyHandler(BaseHTTPRequestHandler):
             self.send_header("content-type", "text/html; charset=utf-8")
             self.end_headers()
             # join all short name and uri to display them in HTML string above
-            m = "".join(["{m} : {uri}<br>".format(m=m, uri=memory[m]) for m in memory])
-            self.wfile.write(html.format(list=m).encode())
+            m = ["{m} : {uri}<br>".format(m=m, uri=memory[m]) for m in memory]
+            self.wfile.write(html.format(list="".join(m)).encode())
 
     def do_POST(self):
         length = int(self.headers.get("Content-length", 0))
@@ -84,7 +87,8 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.send_response(404)
                 self.send_header("content-type", "text/plain; charset=utf-8")
                 self.end_headers()
-                self.wfile.write("Unable to get response form URI {}.".format(q["uri"][0]).encode())
+                self.wfile.write("Unable to get response " +
+                                 "form URI {}.".format(q["uri"][0]).encode())
         else:
             # error
             self.send_response(404)

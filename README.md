@@ -9,7 +9,6 @@ The code demonstrates the following:
 * Server actign as client using requests module
 * URI checking using requests module
 
-
 ## How to run
 Type the following in command
 
