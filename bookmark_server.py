@@ -102,7 +102,7 @@ if __name__ == "__main__":
     # use port if it's there
     port = int(os.environ.get('PORT', 8000))
     # added for Heroku
-    server = HTTPServer(("", 8000), MyHandler)
+    server = HTTPServer(("", port), MyHandler)
 
     # server = HTTPServer(("127.0.0.1", 8000), MyHandler)
     server.serve_forever()
