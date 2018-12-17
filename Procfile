@@ -1,1 +1,1 @@
-worker: python bookmark_server.py
+web: python bookmark_server.py
