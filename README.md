@@ -17,4 +17,10 @@ Type the following in command
 $> python bookmark_server
 ```
 
+or
+
+```bash
+$> python bookmark_threaded_server
+```
+
 Then open `localhost:8000` in your web browser.
