@@ -9,7 +9,7 @@ html = '''
 <!DOCTYPE html>
     <title>URI Shortner</title>
     <body/>
-        <form action="http://localhost:8000/" method="POST">
+        <form method="POST">
             <label>Long URI:
                 <input type="text" name="uri" value="mystery">
             </label>
